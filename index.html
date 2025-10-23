@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solace</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel">
+        <p class="eyebrow">Distributed Queue Sandbox</p>
+        <h1>Solace</h1>
+        <p class="desc">Simulate partitioned queue consumers with retry, DLQ, and adaptive concurrency control.</p>
+
+        <div class="card">
+          <h2>Workload</h2>
+          <label>Messages
+            <input id="messages" type="range" min="200" max="5000" step="100" value="1800" />
+            <span id="messagesVal">1800</span>
+          </label>
+          <label>Failure Rate
+            <input id="fail" type="range" min="0" max="0.5" step="0.01" value="0.12" />
+            <span id="failVal">0.12</span>
+          </label>
+          <label>Consumers
+            <input id="consumers" type="range" min="1" max="18" step="1" value="8" />
+            <span id="consumersVal">8</span>
+          </label>
+          <div class="row">
+            <button id="run">Run Simulation</button>
+            <button id="optimize">Auto Tune</button>
+          </div>
+        </div>
+
+        <div class="card metrics">
+          <h2>Pipeline Health</h2>
+          <p>Throughput: <strong id="throughput">0 msg/s</strong></p>
+          <p>P95 Latency: <strong id="p95">0 ms</strong></p>
+          <p>Retries: <strong id="retries">0</strong></p>
+          <p>DLQ Count: <strong id="dlq">0</strong></p>
+        </div>
+      </section>
+
+      <section class="viz">
+        <article class="card">
+          <h2>Consumer Timeline</h2>
+          <canvas id="timeline" width="1080" height="360"></canvas>
+        </article>
+        <article class="card">
+          <h2>Queue Depth</h2>
+          <canvas id="depth" width="1080" height="200"></canvas>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
